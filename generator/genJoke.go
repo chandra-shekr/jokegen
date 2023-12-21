@@ -2,11 +2,13 @@ package generator
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
 )
 
 type response struct {
+	Setup    string `json:setup`
 	Delivery string `json:"delivery"`
 }
 
@@ -27,6 +29,6 @@ func GenRandomJoke() (string, error) {
 		return "", err
 	}
 
-	return result.Delivery, nil
+	return fmt.Sprintf("%v\n%v", result.Setup, result.Delivery), nil
 
 }
