@@ -1,4 +1,4 @@
-package jokegen
+package generator
 
 import (
 	"encoding/json"
