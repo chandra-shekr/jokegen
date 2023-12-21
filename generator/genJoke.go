@@ -8,7 +8,7 @@ import (
 )
 
 type response struct {
-	Setup    string `json:setup`
+	Setup    string `json:"setup"`
 	Delivery string `json:"delivery"`
 }
 
