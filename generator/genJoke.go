@@ -21,14 +21,19 @@ func GenRandomJoke() (string, error) {
 		return "", err
 	}
 	defer resp.Body.Close()
-	body, _ := io.ReadAll(resp.Body)
-	var result response
 
-	if err := json.Unmarshal(body, &result); err != nil {
+	if body, err := io.ReadAll(resp.Body); err != nil {
 
 		return "", err
-	}
+	} else {
+		var result response
+		if err := json.Unmarshal(body, &result); err != nil {
 
-	return fmt.Sprintf("%v\n%v", result.Setup, result.Delivery), nil
+			return "", err
+		}
+
+		return fmt.Sprintf("%v\n%v", result.Setup, result.Delivery), nil
+
+	}
 
 }
